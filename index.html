@@ -28,7 +28,6 @@
             padding-bottom: 40px;
         }
 
-        /* 標頭 */
         header {
             background-color: var(--primary-dark);
             color: white;
@@ -50,7 +49,6 @@
             opacity: 0.8;
         }
 
-        /* 天數切換頁籤 (Tab Bar) */
         .tab-bar {
             display: flex;
             background-color: var(--primary);
@@ -82,14 +80,12 @@
             background-color: rgba(255, 255, 255, 0.1);
         }
 
-        /* 主要內容區 */
         .container {
             padding: 16px;
             max-width: 600px;
             margin: 0 auto;
         }
 
-        /* 行程區塊切換 */
         .day-content {
             display: none;
         }
@@ -98,7 +94,6 @@
             display: block;
         }
 
-        /* 標籤卡片 */
         .card {
             background: var(--card-bg);
             border-radius: 8px;
@@ -115,7 +110,6 @@
             padding-bottom: 4px;
         }
 
-        /* 關鍵 P0 警告框 */
         .alert-box {
             background-color: #fff5f5;
             border-left: 4px solid var(--danger);
@@ -127,7 +121,6 @@
             line-height: 1.4;
         }
 
-        /* 時間軸 (Timeline) */
         .timeline {
             position: relative;
             padding-left: 20px;
@@ -179,7 +172,6 @@
             margin-top: 2px;
         }
 
-        /* 景點圖片 RWD 樣式 */
         .spot-img {
             width: 100%;
             max-height: 200px;
@@ -189,7 +181,6 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
-        /* 按鈕風格 */
         .btn {
             display: inline-block;
             background-color: #edf2f7;
@@ -207,7 +198,6 @@
             background-color: #e2e8f0;
         }
 
-        /* 總覽表格 */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -235,10 +225,9 @@
 
     <header>
         <h1>🎌 2026 日本關東與東海自由行</h1>
-        <p>5 天 4 夜 行程隨身指南 (v1.2.0)</p>
+        <p>5 天 4 夜 行程隨身指南 (v1.3.0)</p>
     </header>
 
-    <!-- 天數切換 Tab -->
     <div class="tab-bar">
         <button class="tab-btn active" onclick="switchTab('overview')">總覽</button>
         <button class="tab-btn" onclick="switchTab('d1')">D1 10/19</button>
@@ -271,7 +260,7 @@
                         <tr>
                             <td><b>D2</b></td>
                             <td>八景島/中華街</td>
-                            <td>海島樂園、中華街美食散策</td>
+                            <td>海島樂園水族館/遊樂園、中華街、海洋塔、AIR CABIN</td>
                         </tr>
                         <tr>
                             <td><b>D3</b></td>
@@ -298,30 +287,33 @@
             <div class="card">
                 <h2>D1: 10/19 (一) 橫濱港灣夜景</h2>
                 
-                <!-- 飯店資訊備忘區塊 (可自由編輯) -->
-                <div style="background-color: #ebf8ff; border-left: 4px solid #3182ce; padding: 12px; margin-bottom: 16px; border-radius: 4px; font-size: 0.85rem;">
-                    <div style="font-weight: bold; color: #2b6cb0; margin-bottom: 4px;">🏨 橫濱灣東急飯店 (Yokohama Bay Hotel Tokyu) 資訊</div>
-                    <ul style="margin-left: 18px; color: #2d3748; line-height: 1.5;">
-                        <li><b>Check-in 時間：</b>15:00 以後（可先寄放行李）</li>
-                        <li><b>Check-out 時間：</b>11:00 前</li>
-                        <li><b>地址/備註：</b>神奈川縣橫濱市西區港未來2-3-7 (直通港未來站)</li>
-                    </ul>
-                </div>
-
                 <div class="timeline">
                     <div class="timeline-item">
-                        <div class="time">13:53</div>
-                        <div class="title">🛬 抵達橫濱灣東急飯店</div>
+                        <div class="time">13:10</div>
+                        <div class="title">🛬 抵達羽田空港 ➔ 搭乘 13:40 京急巴士</div>
+                        <div class="desc">預計搭乘 13:40 班次直達港未來地區。</div>
+                        <a href="https://www.keikyu-bus.co.jp/airport/h-yamashita/" target="_blank" class="btn">🚌 京急巴士時刻表</a>
                     </div>
 
                     <div class="timeline-item">
-                        <div class="time">13:53 - 14:30</div>
-                        <div class="title">🧳 飯店 Check-in 放置行李</div>
-                        <div class="desc">辦理入住手續並於櫃檯寄存行李，準備展開港灣行程。</div>
+                        <div class="time">14:34</div>
+                        <div class="title">🏨 抵達橫濱灣東急飯店 & 寄存行李</div>
+                        <div class="desc">先至飯店辦理寄存行李手續，再準備出發至日本丸紀念公園。</div>
+                        
+                        <!-- 飯店可編輯備忘區塊 -->
+                        <div style="background-color: #ebf8ff; border-left: 4px solid #3182ce; padding: 10px; margin-top: 8px; border-radius: 4px; font-size: 0.85rem;">
+                            <div style="font-weight: bold; color: #2b6cb0; margin-bottom: 4px;">📝 飯店資訊與入住備忘</div>
+                            <ul style="margin-left: 18px; color: #2d3748; line-height: 1.5;">
+                                <li><b>飯店名稱：</b>橫濱灣東急飯店 (Yokohama Bay Hotel Tokyu)</li>
+                                <li><b>Check-in 時間：</b>15:00 以後</li>
+                                <li><b>Check-out 時間：</b>11:00 前</li>
+                                <li><b>預訂編號 / 備註：</b>（點擊編輯補充預訂資訊）</li>
+                            </ul>
+                        </div>
                     </div>
 
                     <div class="timeline-item">
-                        <div class="time">14:30 - 14:40</div>
+                        <div class="time">14:40 - 14:50</div>
                         <div class="title">🚶 步行前往日本丸メモリアルパーク</div>
                     </div>
 
@@ -330,7 +322,7 @@
                         <div class="title">🦆 日本丸紀念公園搭乘 Skyduck</div>
                         <div class="desc">從陸地和海上盡情享受橫濱灣地區。由汽車變成船時的飛濺魄力必看！</div>
                         <div class="desc" style="color: #dd6b20; font-weight: bold; margin-top: 4px;">💰 票價：平日 3,600 日幣（行程時長約 50 分鐘）</div>
-                        <img src="https://www.skybus.jp/course/up_img/1499860040-092824_2.jpg" alt="Skyduck 水陸兩用車" class="spot-img">
+                        <img src="https://visitkanagawa.jp/legacy-assets/img/spots/photos/hero/cAWb1YjofFFOJo4k566Vvgrl91qNMTgJ0MHlajiE-1920x1080.jpg" alt="Skyduck 水陸兩用車" class="spot-img">
                         <a href="https://www.skybus.jp/course/?id=1499860040-092824" target="_blank" class="btn">🎟️ Skyduck 官網詳情</a>
                     </div>
 
@@ -346,7 +338,6 @@
                             <b>路線包含：</b>日本大通喝咖啡 ➔ 山下公園 ➔ 象鼻公園 ➔ 橫濱大棧橋 ➔ 紅磚倉庫 ➔ 橫濱太空世界
                         </div>
                         
-                        <!-- 景點照片相簿 -->
                         <div style="display: flex; flex-direction: column; gap: 10px;">
                             <div>
                                 <span style="font-size: 0.75rem; color: #718096; font-weight: bold;">📍 山下公園</span>
@@ -377,23 +368,81 @@
         <!-- Day 2 -->
         <div id="d2" class="day-content">
             <div class="card">
-                <h2>D2: 10/20 (二) 八景島水族館 ➔ 中華街</h2>
+                <h2>D2: 10/20 (二) 八景島水族館 ➔ 中華街 ➔ 海洋塔 ➔ AIR CABIN</h2>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="time">09:00 - 09:42</div>
                         <div class="title">⏰ 起床 ➔ 09:42 搭乘京急巴士前往八景島</div>
                         <a href="https://www.keikyu-bus.co.jp/highway/y-seaparadise/" target="_blank" class="btn">🚌 巴士時刻表</a>
                     </div>
+
                     <div class="timeline-item">
                         <div class="time">10:15 - 15:00</div>
-                        <div class="title">🐬 八景島海島樂園</div>
-                        <div class="desc">可彈性延至 16:00 離開</div>
-                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80" alt="水族館" class="spot-img">
+                        <div class="title">🐬 橫濱八景島海島樂園</div>
+                        <img src="https://visitkanagawa.jp/legacy-assets/img/spots/photos/hero/Inau3OIxKmaxzg5IEBLTGHhkjhwPlKJvFEExfpuz-1920x1080.jpg" alt="橫濱八景島" class="spot-img">
+                        
+                        <div style="margin-top: 10px; font-size: 0.85rem; color: #2d3748;">
+                            <b>🐠 水族館區 (展示約 700 種、共 12 萬隻海洋生物)</b>
+                            <ul style="margin-left: 18px; margin-top: 4px;">
+                                <li>Aqua Museum 海洋水族館 <a href="https://www.seaparadise.co.jp/image/2406_animallifeliveday_thum.jpg" target="_blank">📷 圖1</a></li>
+                                <li>Dolphin Fantasy 海豚奇幻館 <a href="https://www.seaparadise.co.jp/image/aquaresorts_dolphin_facility_aquarium_bottlenose_mv_pc.jpg" target="_blank">📷 圖2</a></li>
+                                <li>Fureai Lagoon 互動ラグーン <a href="https://www.seaparadise.co.jp/image/aquaresorts_event_animal_pafo_002.jpg" target="_blank">📷 圖3</a></li>
+                                <li>Umi Farm 海洋農場</li>
+                            </ul>
+
+                            <b style="display: block; margin-top: 8px;">🎢 遊樂園區 (Pleasure Land)</b>
+                            <ul style="margin-left: 18px; margin-top: 4px;">
+                                <li>Sea Paradise Tower 旋轉展望塔 <a href="https://www.seaparadise.co.jp/image/pleasureland_attraction_sp_tower_mv_pc.jpeg" target="_blank">📷 圖1</a></li>
+                                <li>海上雲霄飛車 Surf Coaster <a href="https://www.seaparadise.co.jp/image/pleasureland_attraction_surf_coaster_mv_pc.jpg" target="_blank">📷 圖2</a></li>
+                            </ul>
+                        </div>
                     </div>
+
                     <div class="timeline-item">
                         <div class="time">15:25 - 17:30</div>
-                        <div class="title">🥟 橫濱中華街散策</div>
-                        <div class="desc">各自逛街美食體驗，17:30 離開</div>
+                        <div class="title">🥟 橫濱中華街 & 元町商店街覓食散步</div>
+                        <div class="desc">品嚐中華街特色小吃，隨後前往浪漫的元町商店街散策。</div>
+                        <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 6px;">
+                            <div>
+                                <span style="font-size: 0.75rem; color: #718096; font-weight: bold;">📍 橫濱中華街</span>
+                                <img src="https://visitkanagawa.jp/legacy-assets/img/spots/photos/hero/clf14GcmIuW2Hsmdr0Z2F0EBN2UDqLG21waxr869-1920x1080.jpg" alt="橫濱中華街" class="spot-img">
+                            </div>
+                            <div>
+                                <span style="font-size: 0.75rem; color: #718096; font-weight: bold;">📍 元町商店街</span>
+                                <img src="https://visitkanagawa.jp/legacy-assets/img/spots/photos/large/e3cf3819589a63992f1e4092dbef30a6-900x600.jpg" alt="元町商店街" class="spot-img">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">17:30</div>
+                        <div class="title">🗼 橫濱海洋塔 (Yokohama Marine Tower)</div>
+                        <div class="desc">登塔展望港灣夜景。</div>
+                        <img src="https://visitkanagawa.jp/legacy-assets/img/spots/photos/large/CxvWmeAh7ZoD1UhlbrUjsIQgcHDb9BZZdBXGBnhi-900x600.jpg" alt="橫濱海洋塔" class="spot-img">
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">18:30</div>
+                        <div class="title">🚃 元町・中華街站 (山下公園) ➔ 櫻木町站</div>
+                        <div class="desc">搭乘私鐵電車前往櫻木町。</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">18:45</div>
+                        <div class="title">🌁 搭乘 YOKOHAMA AIR CABIN 空中纜車</div>
+                        <div class="desc">從櫻木町站搭乘纜車前往運河公園，俯瞰橫濱夜景。</div>
+                        <img src="https://visitkanagawa.jp/legacy-assets/img/spots/photos/large/8YsqaiFMpHjRmdH1iLSpakQ15ytU9sZca5ynETSD-900x600.jpg" alt="YOKOHAMA AIR CABIN" class="spot-img">
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">19:15</div>
+                        <div class="title">🎡 抵達運河公園</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">19:15 - 自由結束</div>
+                        <div class="title">🌃 自由行程 / 散步返回飯店</div>
+                        <div class="desc">可於周邊商場逛街、享用晚餐後漫步回飯店。</div>
                     </div>
                 </div>
             </div>
