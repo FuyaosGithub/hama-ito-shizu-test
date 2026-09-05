@@ -1,4 +1,299 @@
-<!-- Day 1 -->
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 日本 5D4N 自由行隨身指南</title>
+    <style>
+        :root {
+            --primary: #2b6cb0;
+            --primary-dark: #1a365d;
+            --accent: #dd6b20;
+            --danger: #e53e3e;
+            --bg: #f7fafc;
+            --card-bg: #ffffff;
+            --text: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding-bottom: 40px;
+        }
+
+        /* 標頭 */
+        header {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 16px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+
+        header p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        /* 天數切換頁籤 (Tab Bar) */
+        .tab-bar {
+            display: flex;
+            background-color: var(--primary);
+            overflow-x: auto;
+            position: sticky;
+            top: 53px;
+            z-index: 99;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 70px;
+            padding: 12px 8px;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-align: center;
+            white-space: nowrap;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-btn.active {
+            color: white;
+            border-bottom: 3px solid #f6ad55;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* 主要內容區 */
+        .container {
+            padding: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 行程區塊切換 */
+        .day-content {
+            display: none;
+        }
+
+        .day-content.active {
+            display: block;
+        }
+
+        /* 標籤卡片 */
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+        }
+
+        /* 關鍵 P0 警告框 */
+        .alert-box {
+            background-color: #fff5f5;
+            border-left: 4px solid var(--danger);
+            color: #c53030;
+            padding: 10px 12px;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        /* 時間軸 (Timeline) */
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid #e2e8f0;
+            margin-left: 8px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            border: 2px solid white;
+        }
+
+        .timeline-item.p0::before {
+            background-color: var(--danger);
+        }
+
+        .time {
+            font-weight: bold;
+            font-size: 0.85rem;
+            color: var(--primary);
+            margin-bottom: 2px;
+        }
+
+        .timeline-item.p0 .time {
+            color: var(--danger);
+        }
+
+        .title {
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: var(--text);
+        }
+
+        .desc {
+            font-size: 0.85rem;
+            color: #718096;
+            margin-top: 2px;
+        }
+
+        /* 景點圖片 RWD 樣式 */
+        .spot-img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-top: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        /* 按鈕風格 */
+        .btn {
+            display: inline-block;
+            background-color: #edf2f7;
+            color: var(--primary-dark);
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-top: 6px;
+            border: 1px solid #cbd5e0;
+        }
+
+        .btn:hover {
+            background-color: #e2e8f0;
+        }
+
+        /* 總覽表格 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 8px 6px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f7fafc;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎌 2026 日本關東與東海自由行</h1>
+        <p>5 天 4 夜 行程隨身指南 (v1.2.0)</p>
+    </header>
+
+    <!-- 天數切換 Tab -->
+    <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchTab('overview')">總覽</button>
+        <button class="tab-btn" onclick="switchTab('d1')">D1 10/19</button>
+        <button class="tab-btn" onclick="switchTab('d2')">D2 10/20</button>
+        <button class="tab-btn" onclick="switchTab('d3')">D3 10/21</button>
+        <button class="tab-btn" onclick="switchTab('d4')">D4 10/22</button>
+        <button class="tab-btn" onclick="switchTab('d5')">D5 10/23</button>
+    </div>
+
+    <div class="container">
+
+        <!-- 總覽看板 -->
+        <div id="overview" class="day-content active">
+            <div class="card">
+                <h2>🗺️ 全景看板 Overview</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>日</th>
+                            <th>核心區域</th>
+                            <th>主要亮點</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>D1</b></td>
+                            <td>橫濱港區</td>
+                            <td>Skyduck、山下公園散步、港灣夜景</td>
+                        </tr>
+                        <tr>
+                            <td><b>D2</b></td>
+                            <td>八景島/中華街</td>
+                            <td>海島樂園、中華街美食散策</td>
+                        </tr>
+                        <tr>
+                            <td><b>D3</b></td>
+                            <td>伊豆半島</td>
+                            <td>大室山纜車、仙人掌動物園、城崎海岸</td>
+                        </tr>
+                        <tr>
+                            <td><b>D4</b></td>
+                            <td>熱海/靜岡</td>
+                            <td>熱海商店街、三保松原、水上巴士</td>
+                        </tr>
+                        <tr>
+                            <td><b>D5</b></td>
+                            <td>靜岡/名古屋</td>
+                            <td>日本平夢陽台、久能山東照宮、大須商店街</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Day 1 -->
         <div id="d1" class="day-content">
             <div class="card">
                 <h2>D1: 10/19 (一) 橫濱港灣夜景</h2>
@@ -78,3 +373,142 @@
                 </div>
             </div>
         </div>
+
+        <!-- Day 2 -->
+        <div id="d2" class="day-content">
+            <div class="card">
+                <h2>D2: 10/20 (二) 八景島水族館 ➔ 中華街</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="time">09:00 - 09:42</div>
+                        <div class="title">⏰ 起床 ➔ 09:42 搭乘京急巴士前往八景島</div>
+                        <a href="https://www.keikyu-bus.co.jp/highway/y-seaparadise/" target="_blank" class="btn">🚌 巴士時刻表</a>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">10:15 - 15:00</div>
+                        <div class="title">🐬 八景島海島樂園</div>
+                        <div class="desc">可彈性延至 16:00 離開</div>
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80" alt="水族館" class="spot-img">
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">15:25 - 17:30</div>
+                        <div class="title">🥟 橫濱中華街散策</div>
+                        <div class="desc">各自逛街美食體驗，17:30 離開</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 3 -->
+        <div id="d3" class="day-content">
+            <div class="card">
+                <h2>D3: 10/21 (三) 伊豆大室山與城崎海岸</h2>
+                <div class="alert-box">
+                    <strong>💡 轉乘提示：</strong> 本日公車與電車銜接較緊密，請務必按預定班次搭乘。
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="time">07:00 - 09:30</div>
+                        <div class="title">🚉 抵達伊東車站 ➔ Laforet 放置行李</div>
+                        <a href="https://www.google.com/maps/dir/%E6%A9%AB%E6%BF%B1%E7%81%A3%E6%9D%B1%E6%80%A5%E9%A3%AF%E5%BA%97/%E4%BC%8A%E6%9D%B1%E8%BB%8A%E7%AB%99" target="_blank" class="btn">🗺️ 橫濱至伊東路線</a>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">10:30 - 13:48</div>
+                        <div class="title">⛰️ 大室山 (纜車) & 仙人掌動物園</div>
+                        <img src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=600&q=80" alt="大室山自然風光" class="spot-img">
+                    </div>
+                    <div class="timeline-item p0">
+                        <div class="time">13:48 - 14:14</div>
+                        <div class="title">🚌 仙人掌動物園站 ➔ 伊豆海洋公園站</div>
+                        <a href="https://www.google.com/maps/dir/%E4%BB%99%E4%BA%BA%E6%8E%8C%E5%8B%95%E7%89%A9%E5%9C%92/%E4%BC%8A%E8%B1%86%E6%B5%B7%E6%B4%8B%E5%85%AC%E5%9C%92" target="_blank" class="btn">🗺️ 公車銜接路線</a>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">14:40 - 15:57</div>
+                        <div class="title">🌉 城崎海岸、門脅吊橋、門脅崎燈塔</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">17:00 - 18:00</div>
+                        <div class="title">🛍️ 伊東商店街散策 ➔ 晚上自由活動</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 4 -->
+        <div id="d4" class="day-content">
+            <div class="card">
+                <h2>D4: 10/22 (四) 熱海 ➔ 靜岡 ➔ 三保松原</h2>
+                <div class="alert-box">
+                    <strong>⚠️ P0 關鍵船班：</strong><br>
+                    15:30 三保渡船，錯過下一班要等到 16:35。
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="time">10:00 - 11:13</div>
+                        <div class="title">🍡 熱海車站商店街吃吃喝喝</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">11:13 - 11:56</div>
+                        <div class="title">🚄 新幹線：熱海 ➔ 靜岡</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">12:30 - 14:30</div>
+                        <div class="title">🚲 清水站租腳踏車 ➔ 御穗神社 ➔ 神之道 ➔ 三保松原</div>
+                        <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=600&q=80" alt="富士山遠眺" class="spot-img">
+                    </div>
+                    <div class="timeline-item p0">
+                        <div class="time">15:30</div>
+                        <div class="title">🚢 三保渡船 (前往日之初)</div>
+                        <a href="https://www.shimizu-cruise.co.jp/tw/fare/" target="_blank" class="btn">🚢 渡船時刻表</a>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">16:30 - 19:00</div>
+                        <div class="title">🍱 晚餐美食品嚐</div>
+                        <div class="desc">和牛漢堡排 / 海鮮丼 / Nanaya 抹茶冰淇淋 / 關東煮</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 5 -->
+        <div id="d5" class="day-content">
+            <div class="card">
+                <h2>D5: 10/23 (五) 日本平 ➔ 久能山東照宮 ➔ 名古屋</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="time">09:17 - 11:30</div>
+                        <div class="title">⛩️ 日本平夢陽台 ➔ 久能山東照宮 (纜車)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">13:16 - 14:30</div>
+                        <div class="title">🎁 回靜岡站採購伴手禮</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">14:56 - 16:01</div>
+                        <div class="title">🚄 新幹線：靜岡 ➔ 名古屋</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">16:20 - 16:30</div>
+                        <div class="title">🏨 Henna Hotel Check-in ➔ 大須商店街</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            const contents = document.querySelectorAll('.day-content');
+            contents.forEach(content => content.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
